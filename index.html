@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MaDenFlow</title>
+
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+
+<header class="glass-header">
+
+
+    <div class="logo">
+        ☁️ MaDenFlow
+    </div>
+
+
+
+    <div id="weekTitle">
+
+    </div>
+
+
+
+    <div class="week-nav">
+
+
+        <button id="prevWeek">
+            ◀
+        </button>
+
+
+
+        <button id="todayBtn">
+            Сегодня
+        </button>
+
+
+
+        <button id="nextWeek">
+            ▶
+        </button>
+
+
+    </div>
+
+
+</header>
+
+
+
+
+
+<main id="planner">
+
+</main>
+
+
+<div class="bottom-bar">
+
+
+    <button id="addTaskBtn">
+        💫
+    </button>
+
+
+    <button id="deleteTaskBtn">
+        🗑
+    </button>
+
+
+</div>
+
+
+
+
+<div id="taskModal" class="modal hidden">
+
+
+    <div class="modal-box">
+
+
+        <h3>
+            Новая задача
+        </h3>
+
+
+        <input 
+        id="newTaskInput"
+        placeholder="Введите задачу..."
+        >
+
+
+
+        <div class="modal-buttons">
+
+
+            <button id="saveTaskBtn">
+                Сохранить
+            </button>
+
+
+            <button id="cancelTaskBtn">
+                Отмена
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+
+<script src="storage.js"></script>
+
+<script src="cloud.js"></script>
+
+<script src="app.js"></script>
+
+</body>
+
+</html>

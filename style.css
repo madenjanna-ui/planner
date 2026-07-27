@@ -1,0 +1,1031 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+
+body {
+
+    font-family: 'Nunito', sans-serif;
+
+}
+/* =================================
+   MaDenFlow Glass Theme
+================================= */
+
+
+* {
+
+    box-sizing:border-box;
+
+}
+
+
+
+body {
+
+
+    margin:0;
+
+
+    min-height:100vh;
+
+
+
+    font-family:
+
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #dbeafe,
+        #f5f3ff,
+        #e0f2fe
+    );
+
+
+
+    color:#1f2937;
+
+
+}
+
+
+
+
+
+
+/* ==========================
+   HEADER
+========================== */
+
+
+.glass-header {
+
+
+    position:sticky;
+
+
+    top:0;
+
+
+    z-index:10;
+
+
+
+    padding:20px;
+
+
+
+    background:
+
+    rgba(255,255,255,0.35);
+
+
+
+    backdrop-filter:
+
+    blur(20px);
+
+
+
+    -webkit-backdrop-filter:
+
+    blur(20px);
+
+
+
+    border-bottom:
+
+    1px solid rgba(255,255,255,0.6);
+
+
+
+    border-radius:
+
+    0 0 25px 25px;
+
+
+
+    box-shadow:
+
+    0 10px 30px rgba(0,0,0,0.08);
+
+
+}
+
+
+
+
+
+.logo {
+
+
+    text-align:center;
+
+
+    font-size:30px;
+
+
+    font-weight:700;
+
+
+    letter-spacing:1px;
+
+
+    margin-bottom:10px;
+
+
+}
+
+
+
+
+
+
+#weekTitle {
+
+
+    text-align:center;
+
+
+    font-size:20px;
+
+
+    font-weight:600;
+
+
+    margin-bottom:15px;
+
+
+}
+
+
+
+
+
+
+.week-nav {
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    gap:10px;
+
+
+}
+
+
+
+.week-nav button,
+#prevWeek,
+#todayBtn,
+#nextWeek {
+
+
+    min-width:45px;
+
+
+    padding:10px 15px;
+
+
+    border:none;
+
+
+
+    border-radius:15px;
+
+
+
+    cursor:pointer;
+
+
+
+    background:
+
+    rgba(255,255,255,0.55);
+
+
+
+    backdrop-filter:
+
+    blur(10px);
+
+
+
+    box-shadow:
+
+    0 5px 15px rgba(0,0,0,0.08);
+
+
+    font-size:15px;
+
+
+}
+
+
+
+
+
+.week-nav button:hover {
+
+
+    transform:scale(1.05);
+
+
+}
+
+
+
+
+
+
+
+/* ==========================
+   PLANNER
+========================== */
+
+
+#planner {
+
+    max-width:700px;
+
+    margin:auto;
+
+    padding:15px;
+
+    padding-bottom:110px;
+
+}
+
+
+
+
+
+
+/* ==========================
+   DAYS
+========================== */
+
+
+.day {
+
+
+    background:
+
+    rgba(255,255,255,0.45);
+
+
+
+    backdrop-filter:
+
+    blur(18px);
+
+
+
+    -webkit-backdrop-filter:
+
+    blur(18px);
+
+
+
+    border-radius:22px;
+
+
+
+    padding:15px;
+
+
+
+    margin-bottom:14px;
+
+
+
+    border:
+
+    1px solid rgba(255,255,255,0.7);
+
+
+
+    box-shadow:
+
+    0 12px 35px rgba(0,0,0,0.08);
+
+
+
+}
+
+
+
+
+
+.day.today {
+
+
+    border:
+
+    2px solid rgba(59,130,246,0.35);
+
+
+}
+
+
+
+.day-title {
+
+
+    font-family:'Nunito', sans-serif;
+
+
+    font-size:20px;
+
+
+    font-weight:700;
+
+
+}
+
+
+.day-title {
+
+
+    width:100%;
+
+
+    border:none;
+
+
+
+    background:
+
+    rgba(255,255,255,0.35);
+
+
+
+    padding:14px;
+
+
+
+    border-radius:16px;
+
+
+
+    cursor:pointer;
+
+
+
+    text-align:left;
+
+
+
+    font-size:17px;
+
+
+}
+
+
+
+
+
+
+.day-content {
+
+
+    margin-top:15px;
+
+
+}
+
+
+
+
+
+
+.hidden {
+
+
+    display:none;
+
+
+}
+
+
+
+
+
+
+/* ==========================
+   TASKS
+========================== */
+
+
+.task {
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+
+    gap:10px;
+
+
+
+    background:
+
+    rgba(255,255,255,0.45);
+
+
+
+    padding:10px;
+
+
+
+    margin-bottom:8px;
+
+
+
+    border-radius:14px;
+
+
+}
+
+
+
+
+
+.task input {
+
+
+    width:18px;
+
+
+    height:18px;
+
+
+}
+
+
+
+
+
+
+/* ==========================
+   ADD TASK
+========================== */
+
+
+.add-box {
+
+
+    display:flex;
+
+
+    gap:8px;
+
+
+    margin-top:12px;
+
+
+}
+
+
+
+
+
+.task-input {
+
+
+    flex:1;
+
+
+
+    height:38px;
+
+
+
+    border-radius:14px;
+
+
+
+    border:
+
+    1px solid rgba(255,255,255,0.8);
+
+
+
+    background:
+
+    rgba(255,255,255,0.55);
+
+
+
+    padding:0 12px;
+
+
+
+    outline:none;
+
+
+}
+
+
+
+
+
+
+.add {
+
+
+    width:38px;
+
+
+    height:38px;
+
+
+    border-radius:12px;
+
+
+
+    border:none;
+
+
+
+    cursor:pointer;
+
+
+
+    background:
+
+    rgba(255,255,255,0.75);
+
+
+
+    font-size:24px;
+
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+}
+
+
+
+.add:hover {
+
+
+    transform:scale(1.1);
+
+
+}
+
+
+
+
+
+
+
+@media(max-width:600px){
+
+
+    .logo {
+
+        font-size:26px;
+
+    }
+
+
+    #planner {
+
+        padding:10px;
+
+    }
+
+
+}
+/* ==========================
+   Bottom Action Bar
+========================== */
+
+
+.bottom-bar {
+
+
+    position:fixed;
+
+
+    bottom:15px;
+
+
+    left:50%;
+
+
+    transform:translateX(-50%);
+
+
+
+    display:flex;
+
+
+    gap:15px;
+
+
+
+    padding:10px 18px;
+
+
+
+    background:
+    rgba(255,255,255,0.55);
+
+
+
+    backdrop-filter:
+    blur(20px);
+
+
+
+    border-radius:25px;
+
+
+
+    box-shadow:
+    0 10px 35px rgba(0,0,0,0.15);
+
+
+}
+
+
+.bottom-bar button {
+
+
+    width:55px;
+
+    height:55px;
+
+
+    border-radius:50%;
+
+
+    border:none;
+
+
+    cursor:pointer;
+
+
+    background:
+
+    rgba(255,255,255,0.75);
+
+
+
+    backdrop-filter:
+
+    blur(15px);
+
+
+
+    font-size:30px;
+
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+
+    transition:0.2s;
+
+
+}
+
+
+
+.bottom-bar button:hover {
+
+
+    transform:scale(1.08);
+
+
+}
+
+/* =====================
+   Task Modal
+===================== */
+
+
+.modal {
+
+
+    position:fixed;
+
+
+    inset:0;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+    background:
+
+    rgba(0,0,0,0.25);
+
+
+    backdrop-filter:
+
+    blur(8px);
+
+
+    z-index:50;
+
+
+}
+
+
+
+.modal.hidden {
+
+    display:none;
+
+}
+
+
+
+.modal-box {
+
+animation:
+
+modalOpen 0.25s ease;
+    width:90%;
+
+
+    max-width:350px;
+
+
+    padding:25px;
+
+
+
+    border-radius:25px;
+
+
+
+    background:
+
+    rgba(255,255,255,0.65);
+
+
+
+    backdrop-filter:
+
+    blur(20px);
+
+
+
+    box-shadow:
+
+    0 20px 50px rgba(0,0,0,0.2);
+
+
+}
+
+
+
+.modal-box input {
+
+
+    width:100%;
+
+
+    height:40px;
+
+
+    border-radius:12px;
+
+
+    border:none;
+
+
+    padding:0 12px;
+
+
+    margin:15px 0;
+
+
+}
+
+
+
+.modal-buttons {
+button {
+
+
+    font-family:'Nunito', sans-serif;
+
+
+    font-weight:700;
+
+
+}
+
+    display:flex;
+
+
+    gap:10px;
+
+
+}
+
+
+
+.modal-buttons button {
+
+
+    flex:1;
+
+
+    padding:10px;
+
+
+    border:none;
+
+
+    border-radius:12px;
+
+
+    cursor:pointer;
+
+
+}
+@keyframes modalOpen {
+
+
+from {
+
+    transform:scale(0.8);
+
+    opacity:0;
+
+}
+
+
+to {
+
+    transform:scale(1);
+
+    opacity:1;
+
+}
+
+
+}
+/* ==========================
+   MaDenFlow Tasks Glass
+========================== */
+
+
+.task {
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:10px;
+
+
+
+    margin:8px 0;
+
+
+
+    padding:12px 15px;
+
+
+
+    background:
+
+    rgba(255,255,255,0.45);
+
+
+
+    backdrop-filter:
+
+    blur(15px);
+
+
+
+    -webkit-backdrop-filter:
+
+    blur(15px);
+
+
+
+    border-radius:18px;
+
+
+
+    border:
+
+    1px solid rgba(255,255,255,0.5);
+
+
+
+    box-shadow:
+
+    0 8px 20px rgba(0,0,0,0.08);
+
+
+
+    transition:
+
+    0.2s;
+
+
+}
+
+
+
+.task:hover {
+
+
+    transform:
+
+    translateY(-2px);
+
+
+}
+
+
+
+.task input {
+
+
+    width:20px;
+
+    height:20px;
+
+
+}
+
+
+
+.task span {
+
+
+    font-size:18px;
+
+
+    font-weight:600;
+
+
+}
+.task.completed span {
+
+
+    text-decoration:line-through;
+
+
+    opacity:0.5;
+
+
+}
+.task.selected{
+
+    border:2px solid #4ea8ff;
+
+    box-shadow:
+    0 0 18px rgba(78,168,255,.45);
+
+}
