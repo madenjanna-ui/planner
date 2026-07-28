@@ -170,7 +170,7 @@ else{
 
 
 }
-if(tasks[date].length > 4){
+if(tasks[date].length > 1){
 
     container.classList.add("two-columns");
 
