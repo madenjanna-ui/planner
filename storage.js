@@ -194,7 +194,58 @@ task.classList.add(
         };
 
 
+// удержание задачи
 
+let pressTimer;
+
+
+function startPress(){
+
+    pressTimer = setTimeout(()=>{
+
+        showPriorityMenu(
+            task,
+            item,
+            date
+        );
+
+    },700);
+
+}
+
+
+
+function endPress(){
+
+    clearTimeout(pressTimer);
+
+}
+
+
+
+task.addEventListener(
+    "touchstart",
+    startPress
+);
+
+
+task.addEventListener(
+    "touchend",
+    endPress
+);
+
+
+
+task.addEventListener(
+    "mousedown",
+    startPress
+);
+
+
+task.addEventListener(
+    "mouseup",
+    endPress
+);
         container.appendChild(task);
 // удержание задачи
 
