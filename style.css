@@ -1271,3 +1271,44 @@ body {
     border-left:8px solid #868E96;
 
 }
+/* ==========================
+   Task Priority Glow
+========================== */
+
+
+.task.yellow {
+
+    box-shadow:
+    0 8px 20px rgba(0,0,0,0.08),
+    0 0 18px rgba(255,215,0,0.55);
+
+}
+
+
+
+.task.red {
+
+    box-shadow:
+    0 8px 20px rgba(0,0,0,0.08),
+    0 0 20px rgba(255,60,60,0.55);
+
+}
+
+
+
+.task.gray {
+
+    box-shadow:
+    0 8px 20px rgba(0,0,0,0.08),
+    0 0 15px rgba(150,150,150,0.45);
+
+}
+
+
+
+.task.normal {
+
+    box-shadow:
+    0 8px 20px rgba(0,0,0,0.08);
+
+}
