@@ -1138,3 +1138,59 @@ to {
     display:none;
 
 }
+/* Компактный режим недели */
+
+@media (max-width:600px){
+
+    .day{
+
+        padding:10px;
+
+        margin-bottom:8px;
+
+        border-radius:16px;
+
+    }
+
+
+    .day-title{
+
+        padding:10px;
+
+        font-size:16px;
+
+    }
+
+
+    .day-content{
+
+        margin-top:8px;
+
+    }
+
+
+    .task{
+
+        padding:7px 10px;
+
+        margin-bottom:5px;
+
+    }
+
+
+    .task span{
+
+        font-size:15px;
+
+    }
+
+
+    .task input{
+
+        width:17px;
+
+        height:17px;
+
+    }
+
+}
