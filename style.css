@@ -1208,3 +1208,26 @@ body {
     overflow-y:auto;
 
 }
+.service-summary{
+
+    position:fixed;
+
+    bottom:95px;
+
+    left:0;
+
+    right:0;
+
+    text-align:center;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    color:#334155;
+
+    z-index:15;
+
+    pointer-events:none;
+
+}
