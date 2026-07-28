@@ -196,6 +196,116 @@ task.classList.add(
 
 
         container.appendChild(task);
+// удержание задачи
+
+let pressTimer;
+
+
+task.addEventListener(
+    "touchstart",
+    function(){
+
+        pressTimer = setTimeout(()=>{
+
+            showPriorityMenu(
+                task,
+                item,
+                date
+            );
+
+        },700);
+
+    }
+);
+
+
+
+task.addEventListener(
+    "touchend",
+    function(){
+
+        clearTimeout(pressTimer);
+
+    }
+);
+
+    });
+
+
+}
+function showPriorityMenu(task, item, date){
+
+
+    let oldMenu =
+    document.querySelector(
+        ".priority-menu"
+    );
+
+
+    if(oldMenu){
+
+        oldMenu.remove();
+
+    }
+
+
+
+    let menu =
+    document.createElement("div");
+
+
+    menu.className =
+    "priority-menu";
+
+
+    menu.innerHTML = `
+
+    <button data-color="yellow">
+    🟡 Важная
+    </button>
+
+
+    <button data-color="red">
+    🔴 Срочная
+    </button>
+
+
+    <button data-color="gray">
+    ⚪ Обычная
+    </button>
+
+    `;
+
+
+
+    task.appendChild(menu);
+
+
+
+    menu.querySelectorAll("button")
+    .forEach(button=>{
+
+
+        button.onclick=function(e){
+
+
+            e.stopPropagation();
+
+
+            item.priority =
+            this.dataset.color;
+
+
+            saveTasks();
+
+
+            menu.remove();
+
+
+            renderWeek();
+
+
+        };
 
 
     });
