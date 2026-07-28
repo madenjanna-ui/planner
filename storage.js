@@ -124,7 +124,34 @@ task.classList.add(item.priority);
 
         // выбор задачи
         task.onclick=function(e){
+task.ondblclick=function(){
 
+    if(item.priority==="normal"){
+
+        item.priority="yellow";
+
+    }
+    else if(item.priority==="yellow"){
+
+        item.priority="red";
+
+    }
+    else if(item.priority==="red"){
+
+        item.priority="gray";
+
+    }
+    else{
+
+        item.priority="normal";
+
+    }
+
+    saveTasks();
+
+    loadTasks(date,container);
+
+};
             if(e.target.tagName==="INPUT"){
                 return;
             }
