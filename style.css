@@ -1312,3 +1312,46 @@ body {
     0 8px 20px rgba(0,0,0,0.08);
 
 }
+.priority-menu{
+
+    position:absolute;
+
+    z-index:100;
+
+    display:flex;
+
+    gap:8px;
+
+    padding:10px;
+
+    border-radius:16px;
+
+
+    background:
+    rgba(255,255,255,.75);
+
+
+    backdrop-filter:
+    blur(15px);
+
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.15);
+
+}
+
+
+.priority-menu button{
+
+    border:none;
+
+    padding:8px 10px;
+
+    border-radius:12px;
+
+    background:
+    rgba(255,255,255,.8);
+
+    cursor:pointer;
+
+}
