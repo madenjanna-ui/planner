@@ -1,10 +1,5 @@
-// =====================================
-// MaDenFlow
-// storage.js
-// =====================================
+// MaDenFlow - сохранение задач
 
-
-// загрузка задач
 
 let tasks =
 JSON.parse(
@@ -14,13 +9,9 @@ JSON.parse(
 {};
 
 
-// выбранная задача
-
-let selectedTask = null;
 
 
-
-// сохранить задачи
+// сохранить
 
 function saveTasks(){
 
@@ -59,9 +50,7 @@ function addTask(date, text){
 
         text:text,
 
-        done:false,
-
-        priority:"normal"
+        done:false
 
     });
 
@@ -69,16 +58,14 @@ function addTask(date, text){
 
     saveTasks();
 
+
 }
 
 
 
 
 
-// =====================================
 // загрузить задачи дня
-// =====================================
-
 
 function loadTasks(date, container){
 
@@ -95,48 +82,7 @@ function loadTasks(date, container){
 
 
 
-
-    // старым задачам добавляем приоритет
-
-    tasks[date].forEach(item=>{
-
-
-        if(!item.priority){
-
-            item.priority="normal";
-
-        }
-
-
-    });
-
-
-
-
-
-    // две колонки
-
-    if(tasks[date].length > 1){
-
-        container.classList.add(
-            "two-columns"
-        );
-
-    }
-    else{
-
-        container.classList.remove(
-            "two-columns"
-        );
-
-    }
-
-
-
-
-
     tasks[date].forEach((item,index)=>{
-
 
 
         let task =
@@ -153,18 +99,9 @@ function loadTasks(date, container){
 
 
 
-        task.classList.add(
-            item.priority
-        );
-
-
-
-
         task.innerHTML = `
 
-
-        <input 
-        type="checkbox"
+        <input type="checkbox"
         ${item.done ? "checked" : ""}>
 
 
@@ -172,15 +109,9 @@ function loadTasks(date, container){
         ${item.text}
         </span>
 
-
         `;
 
 
-
-
-        // ==========================
-        // выбор задачи для удаления
-        // ==========================
 
 
         task.onclick=function(e){
@@ -227,64 +158,6 @@ function loadTasks(date, container){
 
 
 
-
-
-        // ==========================
-        // смена важности
-        // временно двойной клик
-        // ==========================
-
-
-        task.ondblclick=function(){
-
-
-
-            if(item.priority==="normal"){
-
-                item.priority="yellow";
-
-            }
-
-            else if(item.priority==="yellow"){
-
-                item.priority="red";
-
-            }
-
-            else if(item.priority==="red"){
-
-                item.priority="gray";
-
-            }
-
-            else{
-
-                item.priority="normal";
-
-            }
-
-
-
-            saveTasks();
-
-
-            renderWeek();
-
-
-        };
-
-
-
-
-
-
-
-
-        // ==========================
-        // выполнение задачи
-        // ==========================
-
-
         let checkbox =
         task.querySelector("input");
 
@@ -309,15 +182,10 @@ function loadTasks(date, container){
 
 
 
-
-        container.appendChild(
-            task
-        );
-
+        container.appendChild(task);
 
 
     });
-
 
 
 }
