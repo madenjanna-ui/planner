@@ -122,36 +122,68 @@ task.classList.add(item.priority);
 
 
 
-        // выбор задачи
+    // загрузить задачи дня
+
+function loadTasks(date, container){
+
+    container.innerHTML = "";
+
+
+    if(!tasks[date]){
+        return;
+    }
+
+
+    // две колонки если больше одной задачи
+    if(tasks[date].length > 1){
+
+        container.classList.add("two-columns");
+
+    }else{
+
+        container.classList.remove("two-columns");
+
+    }
+
+
+    tasks[date].forEach((item,index)=>{
+
+        // если задача старая — добавляем priority
+        if(!item.priority){
+            item.priority = "normal";
+        }
+
+
+        let task =
+        document.createElement("div");
+
+
+        task.className =
+        item.done ? "task completed" : "task";
+
+
+        task.classList.add(item.priority);
+
+
+        task.innerHTML = `
+
+        <input type="checkbox"
+        ${item.done ? "checked" : ""}>
+
+
+        <span>
+        ${item.text}
+        </span>
+
+        `;
+
+
+        // ----------------------------
+        // Выбор задачи
+        // ----------------------------
+
         task.onclick=function(e){
-task.ondblclick=function(){
 
-    if(item.priority==="normal"){
-
-        item.priority="yellow";
-
-    }
-    else if(item.priority==="yellow"){
-
-        item.priority="red";
-
-    }
-    else if(item.priority==="red"){
-
-        item.priority="gray";
-
-    }
-    else{
-
-        item.priority="normal";
-
-    }
-
-    saveTasks();
-
-    loadTasks(date,container);
-
-};
             if(e.target.tagName==="INPUT"){
                 return;
             }
@@ -172,6 +204,43 @@ task.ondblclick=function(){
         };
 
 
+        // ----------------------------
+        // Двойной клик = смена цвета
+        // ----------------------------
+
+        task.ondblclick=function(){
+
+            if(item.priority==="normal"){
+
+                item.priority="yellow";
+
+            }
+            else if(item.priority==="yellow"){
+
+                item.priority="red";
+
+            }
+            else if(item.priority==="red"){
+
+                item.priority="gray";
+
+            }
+            else{
+
+                item.priority="normal";
+
+            }
+
+            saveTasks();
+
+            renderWeek();
+
+        };
+
+
+        // ----------------------------
+        // Выполнение задачи
+        // ----------------------------
 
         let checkbox =
         task.querySelector("input");
@@ -179,32 +248,18 @@ task.ondblclick=function(){
 
         checkbox.onchange=function(){
 
-
             item.done =
             checkbox.checked;
 
-
             saveTasks();
 
+            renderWeek();
 
         };
 
 
-
         container.appendChild(task);
 
-
-
     });
-
-
-}
-if(tasks[date].length > 1){
-
-    container.classList.add("two-columns");
-
-}else{
-
-    container.classList.remove("two-columns");
 
 }
