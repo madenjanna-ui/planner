@@ -46,13 +46,15 @@ function addTask(date, text){
 
 
 
-    tasks[date].push({
+tasks[date].push({
 
-        text:text,
+    text:text,
 
-        done:false
+    done:false,
 
-    });
+    priority:"normal"
+
+});
 
 
 
