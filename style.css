@@ -569,7 +569,7 @@ body {
 
     right:0;
 
-
+   height:85px;
     display:flex;
 
     justify-content:center;
@@ -985,7 +985,7 @@ to {
 
 #planner {
 
-    padding-bottom:160px;
+    padding-bottom:220px;
 
 }
 
