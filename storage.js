@@ -75,7 +75,7 @@ function loadTasks(date, container){
         return;
     }
 
-if(tasks[date].length > 4){
+if(tasks[date].length > 1){
 
     container.classList.add("two-columns");
 
@@ -84,7 +84,7 @@ if(tasks[date].length > 4){
     container.classList.remove("two-columns");
 
 }
-    if(tasks[date].length > 4){
+    if(tasks[date].length > 1){
 
     container.classList.add("two-columns");
 
