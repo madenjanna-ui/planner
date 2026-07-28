@@ -1,7 +1,7 @@
-// ======================================
-// MaDenFlow 2.0
+// =====================================
+// MaDenFlow
 // storage.js
-// ======================================
+// =====================================
 
 
 // загрузка задач
@@ -10,8 +10,8 @@ let tasks =
 JSON.parse(
     localStorage.getItem("MaDenFlow_tasks")
 )
-|| {};
-
+||
+{};
 
 
 // выбранная задача
@@ -20,7 +20,7 @@ let selectedTask = null;
 
 
 
-// сохранить
+// сохранить задачи
 
 function saveTasks(){
 
@@ -37,6 +37,8 @@ function saveTasks(){
     }
 
 }
+
+
 
 
 
@@ -67,15 +69,15 @@ function addTask(date, text){
 
     saveTasks();
 
-
 }
 
 
 
 
-// ======================================
+
+// =====================================
 // загрузить задачи дня
-// ======================================
+// =====================================
 
 
 function loadTasks(date, container){
@@ -93,9 +95,11 @@ function loadTasks(date, container){
 
 
 
-    // старые задачи получают приоритет
+
+    // старым задачам добавляем приоритет
 
     tasks[date].forEach(item=>{
+
 
         if(!item.priority){
 
@@ -103,13 +107,16 @@ function loadTasks(date, container){
 
         }
 
+
     });
+
+
 
 
 
     // две колонки
 
-    if(tasks[date].length > 2){
+    if(tasks[date].length > 1){
 
         container.classList.add(
             "two-columns"
@@ -127,7 +134,9 @@ function loadTasks(date, container){
 
 
 
+
     tasks[date].forEach((item,index)=>{
+
 
 
         let task =
@@ -150,9 +159,12 @@ function loadTasks(date, container){
 
 
 
+
         task.innerHTML = `
 
-        <input type="checkbox"
+
+        <input 
+        type="checkbox"
         ${item.done ? "checked" : ""}>
 
 
@@ -160,14 +172,15 @@ function loadTasks(date, container){
         ${item.text}
         </span>
 
+
         `;
 
 
 
-        // =========================
-        // обычный клик
-        // выбор задачи
-        // =========================
+
+        // ==========================
+        // выбор задачи для удаления
+        // ==========================
 
 
         task.onclick=function(e){
@@ -214,80 +227,62 @@ function loadTasks(date, container){
 
 
 
-        // =========================
-        // долгое нажатие
-        // =========================
 
 
-        let pressTimer;
+        // ==========================
+        // смена важности
+        // временно двойной клик
+        // ==========================
 
 
-
-        function startPress(){
-
-
-            pressTimer =
-            setTimeout(()=>{
-
-
-                showPriorityMenu(
-                    task,
-                    item,
-                    date,
-                    container
-                );
-
-
-            },700);
-
-
-        }
+        task.ondblclick=function(){
 
 
 
+            if(item.priority==="normal"){
 
-        function cancelPress(){
+                item.priority="yellow";
 
+            }
 
-            clearTimeout(
-                pressTimer
-            );
+            else if(item.priority==="yellow"){
 
+                item.priority="red";
 
-        }
+            }
 
+            else if(item.priority==="red"){
 
+                item.priority="gray";
 
-        task.addEventListener(
-            "touchstart",
-            startPress
-        );
+            }
 
+            else{
 
-        task.addEventListener(
-            "touchend",
-            cancelPress
-        );
+                item.priority="normal";
 
-
-        task.addEventListener(
-            "mousedown",
-            startPress
-        );
+            }
 
 
-        task.addEventListener(
-            "mouseup",
-            cancelPress
-        );
+
+            saveTasks();
+
+
+            renderWeek();
+
+
+        };
 
 
 
 
 
-        // =========================
-        // выполнение
-        // =========================
+
+
+
+        // ==========================
+        // выполнение задачи
+        // ==========================
 
 
         let checkbox =
@@ -306,10 +301,12 @@ function loadTasks(date, container){
             saveTasks();
 
 
+
             renderWeek();
 
 
         };
+
 
 
 
@@ -317,110 +314,6 @@ function loadTasks(date, container){
             task
         );
 
-
-    });
-
-
-}
-
-
-
-
-
-// ======================================
-// меню приоритета
-// ======================================
-
-
-function showPriorityMenu(
-    task,
-    item,
-    date,
-    container
-){
-
-
-
-    let old =
-    document.querySelector(
-        ".priority-menu"
-    );
-
-
-
-    if(old){
-
-        old.remove();
-
-    }
-
-
-
-
-    let menu =
-    document.createElement("div");
-
-
-
-    menu.className =
-    "priority-menu";
-
-
-
-    menu.innerHTML = `
-
-        <button data-color="yellow">
-            Важная
-        </button>
-
-        <button data-color="red">
-            Срочная
-        </button>
-
-        <button data-color="gray">
-            Обычная
-        </button>
-
-    `;
-
-
-
-    task.appendChild(
-        menu
-    );
-
-
-
-
-
-    menu.querySelectorAll("button")
-    .forEach(btn=>{
-
-
-        btn.onclick=function(e){
-
-
-            e.stopPropagation();
-
-
-
-            item.priority =
-            this.dataset.color;
-
-
-
-            saveTasks();
-
-
-
-            menu.remove();
-
-
-
-            renderWeek();
-
-
-        };
 
 
     });
