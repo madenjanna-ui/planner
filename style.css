@@ -1248,3 +1248,26 @@ body {
     border-left:8px solid #868E96;
 
 }
+.task.normal{
+
+    border-left:6px solid transparent;
+
+}
+
+.task.yellow{
+
+    border-left:8px solid #FFD43B;
+
+}
+
+.task.red{
+
+    border-left:8px solid #FA5252;
+
+}
+
+.task.gray{
+
+    border-left:8px solid #868E96;
+
+}
