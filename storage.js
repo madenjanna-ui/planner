@@ -202,6 +202,7 @@ let pressTimer;
 function startPress(){
 
     pressTimer = setTimeout(()=>{
+  console.log("удержание сработало");
 
         showPriorityMenu(
             task,
