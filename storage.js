@@ -96,7 +96,18 @@ function loadTasks(date, container){
         "task completed"
         :
         "task";
+// приоритет задачи
 
+if(!item.priority){
+
+    item.priority = "normal";
+
+}
+
+
+task.classList.add(
+    item.priority
+);
 
 
         task.innerHTML = `
