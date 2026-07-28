@@ -1201,3 +1201,10 @@ body {
     padding-bottom:200px !important;
 
 }
+.day-content {
+
+    max-height:120px;
+
+    overflow-y:auto;
+
+}
