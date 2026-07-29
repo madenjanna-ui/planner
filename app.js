@@ -508,67 +508,6 @@ document
 
 
 
-// =====================================
-// Выбор задачи
-// =====================================
-
-
-
-
-
-            document
-            .querySelectorAll(".task")
-            .forEach(t=>{
-
-                t.classList.remove(
-                    "selected"
-                );
-
-            });
-
-
-
-            task.classList.add(
-                "selected"
-            );
-
-
-
-            let day =
-            task.closest(".day");
-
-
-
-            selectedTask={
-
-                date:
-                day.dataset.date,
-
-
-                index:
-                Array
-                .from(
-                    day.querySelectorAll(".task")
-                )
-                .indexOf(task)
-
-            };
-
-
-        };
-
-
-    });
-
-
-}
-
-
-
-
-
-
-
 
 // =====================================
 // Статусы дней
