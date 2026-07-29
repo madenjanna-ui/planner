@@ -162,14 +162,42 @@ task.classList.add(
 
 
 
-       task.onclick=function(){
+  task.onclick=function(e){
 
-    showTaskMenu(
-        task,
-        item,
-        date,
-        index
+
+    if(e.target.tagName==="INPUT"){
+
+        return;
+
+    }
+
+
+    document
+    .querySelectorAll(".task")
+    .forEach(t=>{
+
+        t.classList.remove(
+            "selected"
+        );
+
+    });
+
+
+
+    task.classList.add(
+        "selected"
     );
+
+
+
+    selectedTask={
+
+        date:date,
+
+        index:index
+
+    };
+
 
 };
 
