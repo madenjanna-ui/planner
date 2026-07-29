@@ -785,4 +785,4 @@ window.addEventListener(
 
 renderWeek();
 
-
+}
