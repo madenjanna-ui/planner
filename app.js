@@ -6,6 +6,8 @@
 console.log("MaDenFlow 2.1 запущен 🚀");
 
 
+// задачи
+
 let tasks =
 JSON.parse(
     localStorage.getItem("MaDenFlow_tasks")
@@ -19,11 +21,13 @@ JSON.parse(
 const planner =
 document.getElementById("planner");
 
+
 const weekTitle =
 document.getElementById("weekTitle");
 
 
-// дни
+
+// дни недели
 
 const weekDays = [
     "Пн",
@@ -36,44 +40,53 @@ const weekDays = [
 ];
 
 
+
 // состояние
 
-let currentDate = new Date();
+let currentDate =
+new Date();
+
 
 let selectedDate = null;
 
+
 let selectedTask = null;
 
-let weekCollapsed = false;
+
 
 
 
 // =====================================
-// Получить понедельник
+// Понедельник недели
 // =====================================
 
 function getMonday(date){
 
-    let d = new Date(date);
+    let d =
+    new Date(date);
 
-    let day = d.getDay();
+
+    let day =
+    d.getDay();
 
 
-    if(day === 0){
+    if(day===0){
 
-        day = 7;
+        day=7;
 
     }
 
 
     d.setDate(
-        d.getDate() - day + 1
+        d.getDate()-day+1
     );
 
 
     return d;
 
 }
+
+
 
 
 
@@ -86,7 +99,7 @@ function getMonday(date){
 function renderWeek(){
 
 
-    planner.innerHTML = "";
+    planner.innerHTML="";
 
 
     let monday =
@@ -112,15 +125,11 @@ function renderWeek(){
 
 
 
-
-
     for(let i=0;i<7;i++){
-
 
 
         let date =
         new Date(monday);
-
 
 
         date.setDate(
@@ -143,20 +152,14 @@ function renderWeek(){
 
 
 
-
         let section =
         document.createElement("section");
 
 
-
-        section.className =
-        "day";
+        section.className="day";
 
 
-
-        section.dataset.date =
-        dateKey;
-
+        section.dataset.date=dateKey;
 
 
 
@@ -168,12 +171,11 @@ function renderWeek(){
 
             <div class="day-name">
 
-          
             ${weekDays[i]}
             ${date.getDate()}
 
 
-            <span 
+            <span
             class="day-status"
             data-date="${dateKey}">
             ⚪
@@ -186,7 +188,7 @@ function renderWeek(){
 
 
 
-            <button 
+            <button
             class="add-task-day"
             data-date="${dateKey}">
             ＋
@@ -197,15 +199,11 @@ function renderWeek(){
 
 
 
-
-     <div class="day-content">
-
+        <div class="day-content">
 
             <div class="tasks"></div>
 
-
         </div>
-
 
 
         `;
@@ -229,18 +227,30 @@ function renderWeek(){
             );
 
 
+        }
+
+
     }
 
 
- updateDayStatus();
 
-activateDays();
+    updateDayStatus();
 
-activateAddButtons();
+    activateDays();
 
+    activateAddButtons();
+
+    activateTaskSelection();
 
 
 }
+
+
+
+
+
+
+
 
 // =====================================
 // Выбор дня
@@ -296,7 +306,6 @@ function activateDays(){
             );
 
 
-
         };
 
 
@@ -310,10 +319,10 @@ function activateDays(){
 
 
 
-// =====================================
-// Кнопка + возле дня
-// =====================================
 
+// =====================================
+// Плюс возле дня
+// =====================================
 
 function activateAddButtons(){
 
@@ -341,11 +350,6 @@ function activateAddButtons(){
             .remove("hidden");
 
 
-        document
-.getElementById("taskModal")
-.classList
-.remove("hidden");
-
         };
 
 
@@ -359,23 +363,28 @@ function activateAddButtons(){
 
 
 
-// =====================================
-// Сохранение задачи
-// =====================================
 
+// =====================================
+// Сохранить задачу
+// =====================================
 
 document
 .getElementById("saveTaskBtn")
 .onclick=function(){
-if(!selectedDate){
 
-    alert(
-        "Не выбран день"
-    );
 
-    return;
 
-}
+    if(!selectedDate){
+
+        alert(
+            "Выберите день"
+        );
+
+        return;
+
+    }
+
+
 
 
     let input =
@@ -387,8 +396,6 @@ if(!selectedDate){
 
     let text =
     input.value.trim();
-
-
 
 
 
@@ -407,7 +414,7 @@ if(!selectedDate){
 
 
 
-    input.value = "";
+    input.value="";
 
 
 
@@ -428,10 +435,10 @@ if(!selectedDate){
 
 
 
+
 // =====================================
 // Отмена
 // =====================================
-
 
 document
 .getElementById("cancelTaskBtn")
@@ -454,9 +461,8 @@ document
 
 
 // =====================================
-// Переключение недель
+// Недели назад/вперёд
 // =====================================
-
 
 document
 .getElementById("prevWeek")
@@ -464,9 +470,7 @@ document
 
 
     currentDate.setDate(
-
         currentDate.getDate()-7
-
     );
 
 
@@ -474,8 +478,6 @@ document
 
 
 };
-
-
 
 
 
@@ -485,9 +487,7 @@ document
 
 
     currentDate.setDate(
-
         currentDate.getDate()+7
-
     );
 
 
@@ -495,9 +495,6 @@ document
 
 
 };
-
-
-
 
 
 
@@ -523,9 +520,8 @@ document
 
 
 // =====================================
-// Выбор задачи для удаления
+// Выбор задачи
 // =====================================
-
 
 function activateTaskSelection(){
 
@@ -578,7 +574,8 @@ function activateTaskSelection(){
 
 
                 index:
-                Array.from(
+                Array
+                .from(
                     day.querySelectorAll(".task")
                 )
                 .indexOf(task)
@@ -602,67 +599,8 @@ function activateTaskSelection(){
 
 
 // =====================================
-// Удаление задачи
-// =====================================
-
-
-document
-.getElementById("deleteTaskBtn")
-.onclick=function(){
-
-
-
-    if(!selectedTask){
-
-
-        alert(
-            "Выберите задачу"
-        );
-
-
-        return;
-
-    }
-
-
-
-
-    tasks[selectedTask.date]
-    .splice(
-
-        selectedTask.index,
-
-        1
-
-    );
-
-
-
-    saveTasks();
-
-
-
-    selectedTask = null;
-
-
-
-    renderWeek();
-
-
-};
-
-
-
-
-
-
-
-
-
-// =====================================
 // Статусы дней
 // =====================================
-
 
 function updateDayStatus(){
 
@@ -682,10 +620,7 @@ function updateDayStatus(){
             tasks[date].length===0
         ){
 
-
-            status.textContent =
-            "⚪";
-
+            status.textContent="⚪";
 
             return;
 
@@ -695,29 +630,17 @@ function updateDayStatus(){
 
 
         let allDone =
-
         tasks[date]
         .every(item=>item.done);
 
 
 
-
-        if(allDone){
-
-
-            status.textContent =
-            "🟢";
-
-
-        }
-        else{
-
-
-            status.textContent =
-            "🟡";
-
-
-        }
+        status.textContent =
+        allDone
+        ?
+        "🟢"
+        :
+        "🟡";
 
 
     });
@@ -731,10 +654,10 @@ function updateDayStatus(){
 
 
 
+
 // =====================================
 // Компактная шапка
 // =====================================
-
 
 const header =
 document.querySelector(
@@ -748,7 +671,7 @@ window.addEventListener(
 ()=>{
 
 
-    if(window.scrollY > 40){
+    if(window.scrollY>40){
 
         header.classList.add(
             "compact"
@@ -767,11 +690,10 @@ window.addEventListener(
 });
 
 
-// =====================================
-// Запуск
-// =====================================
 
+
+
+
+// старт
 
 renderWeek();
-
-}
