@@ -162,7 +162,7 @@ task.classList.add(
 
 
 
-  task.onclick=function(e){
+ task.onclick=function(e){
 
 
     if(e.target.tagName==="INPUT"){
@@ -202,70 +202,28 @@ task.classList.add(
 };
 
 
-            if(e.target.tagName==="INPUT"){
 
-                return;
-
-            }
+let checkbox =
+task.querySelector("input");
 
 
 
-            document
-            .querySelectorAll(".task")
-            .forEach(t=>{
+checkbox.onchange=function(){
 
-                t.classList.remove(
-                    "selected"
-                );
 
-            });
+    item.done =
+    checkbox.checked;
 
 
 
-            task.classList.add(
-                "selected"
-            );
+    saveTasks();
 
 
 
-            selectedTask={
-
-                date:date,
-
-                index:index
-
-            };
+    renderWeek();
 
 
-        };
-
-
-
-
-
-        let checkbox =
-        task.querySelector("input");
-
-
-
-        checkbox.onchange=function(){
-
-
-            item.done =
-            checkbox.checked;
-
-
-
-            saveTasks();
-
-
-
-            renderWeek();
-
-
-        };
-
-
+};
 // удержание задачи
 
 let pressTimer;
