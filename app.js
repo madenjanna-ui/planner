@@ -160,11 +160,7 @@ function renderWeek(){
 
             <div class="day-name">
 
-            <span class="arrow">
-            ${today ? "▼" : "▶"}
-            </span>
-
-
+          
             ${weekDays[i]}
             ${date.getDate()}
 
