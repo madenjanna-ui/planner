@@ -162,7 +162,7 @@ task.classList.add(
 
 
 
- task.onclick=function(e){
+task.onclick=function(e){
 
 
     if(e.target.tagName==="INPUT"){
@@ -172,35 +172,15 @@ task.classList.add(
     }
 
 
-    document
-    .querySelectorAll(".task")
-    .forEach(t=>{
-
-        t.classList.remove(
-            "selected"
-        );
-
-    });
-
-
-
-    task.classList.add(
-        "selected"
+    showTaskMenu(
+        task,
+        item,
+        date,
+        index
     );
 
 
-
-    selectedTask={
-
-        date:date,
-
-        index:index
-
-    };
-
-
 };
-
 
 
 let checkbox =
@@ -297,6 +277,137 @@ function showPriorityMenu(task, item, date){
 
             item.priority =
             this.dataset.color;
+
+
+            saveTasks();
+
+
+            menu.remove();
+
+
+            renderWeek();
+
+
+        };
+
+
+    });
+
+
+}
+function showTaskMenu(task,item,date,index){
+
+
+    let old =
+    document.querySelector(".task-menu");
+
+
+    if(old){
+        old.remove();
+    }
+
+
+
+    let menu =
+    document.createElement("div");
+
+
+    menu.className="task-menu";
+
+
+    menu.innerHTML=`
+
+    <button data-action="yellow">
+    🟡 Важная
+    </button>
+
+
+    <button data-action="red">
+    🔴 Срочная
+    </button>
+
+
+    <button data-action="gray">
+    ⚪ Обычная
+    </button>
+
+
+    <button data-action="edit">
+    ✏️ Редактировать
+    </button>
+
+
+    <button data-action="delete">
+    🗑 Удалить
+    </button>
+
+
+    `;
+
+
+
+    task.appendChild(menu);
+
+
+
+    menu.querySelectorAll("button")
+    .forEach(btn=>{
+
+
+        btn.onclick=function(e){
+
+            e.stopPropagation();
+
+
+            let action =
+            this.dataset.action;
+
+
+
+            if(
+                action==="yellow" ||
+                action==="red" ||
+                action==="gray"
+            ){
+
+                item.priority=action;
+
+            }
+
+
+
+            if(action==="delete"){
+
+
+                tasks[date]
+                .splice(
+                    index,
+                    1
+                );
+
+
+            }
+
+
+
+            if(action==="edit"){
+
+
+                let text =
+                prompt(
+                    "Изменить задачу:",
+                    item.text
+                );
+
+
+                if(text){
+
+                    item.text=text;
+
+                }
+
+            }
+
 
 
             saveTasks();
