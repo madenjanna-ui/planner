@@ -257,32 +257,33 @@ function showTaskMenu(task,item,date,index){
 
 console.log("6");
 
-    document.body.appendChild(menu);
-    console.log("7");
+   document.body.appendChild(menu);
+
+console.log("7");
 console.log(menu);
-console.log(menu.getBoundingClientRect());
 
-
- let rect =
-task.getBoundingClientRect();
-console.log("8");
 menu.style.position = "fixed";
+
+let rect = task.getBoundingClientRect();
 
 let left = rect.left;
 let top = rect.bottom + 6;
 
 // чтобы меню не вылезало за правый край
-if(left + 220 > window.innerWidth){
+if (left + 220 > window.innerWidth) {
     left = window.innerWidth - 230;
 }
 
-// если места снизу нет — показать сверху
-if(top + 250 > window.innerHeight){
-    top = rect.top - 220;
+// чтобы меню не уходило вниз экрана
+if (top + 250 > window.innerHeight) {
+    top = rect.top - 250 - 6;
 }
 
 menu.style.left = left + "px";
 menu.style.top = top + "px";
+
+console.log("8");
+console.log(menu.getBoundingClientRect());
 
     menu.style.zIndex="99999";
 
