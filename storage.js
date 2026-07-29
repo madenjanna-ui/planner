@@ -222,17 +222,14 @@ function showTaskMenu(task,item,date,index){
 
     console.log("3");
 
-    let menu =
-    document.createElement("div");
+    let menu = document.createElement("div");
 
     console.log("4");
 
     menu.className="task-menu";
 
-    console.log("5");
-
-    menu.innerHTML=`
-
+   
+menu.innerHTML = `
         <button data-action="yellow">
             🟡 Важная
         </button>
@@ -255,11 +252,6 @@ function showTaskMenu(task,item,date,index){
 
     `;
 
-console.log("6");
-
-let menu = document.createElement("div");
-
-menu.className = "task-menu";
 
 menu.innerHTML = `
 
