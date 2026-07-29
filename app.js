@@ -198,7 +198,7 @@ function renderWeek(){
 
 
 
-        <div class="day-content ${today ? "" : "hidden"}">
+     <div class="day-content">
 
 
             <div class="tasks"></div>
