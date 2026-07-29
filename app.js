@@ -500,64 +500,14 @@ document
 
 };
 
-
-
-
-
-
-
-
-// =====================================
-// Свернуть неделю
-// =====================================
-
-
-const toggleWeekBtn =
-document.getElementById(
-    "toggleWeekBtn"
-);
-
-
-
-if(toggleWeekBtn){
-
-
-    toggleWeekBtn.onclick=function(){
-
-
-        weekCollapsed =
-        !weekCollapsed;
-
-
-
-        document
-        .querySelectorAll(".day-content")
-        .forEach(content=>{
-
-
-            if(weekCollapsed){
-
-                content.classList.add(
-                    "hidden"
-                );
-
-            }
-            else{
-
-                content.classList.remove(
-                    "hidden"
-                );
-
-            }
-
-
-        });
-
-
-    };
-
-
 }
+
+
+
+
+
+
+
 // =====================================
 // Выбор задачи для удаления
 // =====================================
