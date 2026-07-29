@@ -214,7 +214,7 @@ function loadTasks(date,container){
 // =====================================
 
 function showTaskMenu(task,item,date,index){
-
+alert("showTaskMenu вызвана");
     let oldMenu =
     document.querySelector(".task-menu");
 
