@@ -468,21 +468,3 @@ document.onclick=function(){
     }
 
 };
-
-
-            saveTasks();
-
-
-            menu.remove();
-
-
-            renderWeek();
-
-
-        };
-
-
-    });
-
-
-}
