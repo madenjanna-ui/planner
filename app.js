@@ -229,9 +229,6 @@ function renderWeek(){
             );
 
 
-        }
-
-
     }
 
 
