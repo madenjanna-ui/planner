@@ -229,7 +229,7 @@ function renderWeek(){
 
     activateAddButtons();
 
-    activateTaskSelection();
+  
 
 
 }
