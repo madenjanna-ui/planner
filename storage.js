@@ -228,16 +228,7 @@ checkbox.onchange=function(){
 
 
 
-task.addEventListener(
-    "mousedown",
-    startPress
-);
 
-
-task.addEventListener(
-    "mouseup",
-    endPress
-);
         container.appendChild(task);
 
 
