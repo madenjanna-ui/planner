@@ -380,18 +380,6 @@ menu
 
 
 console.log("9");
-    menu
-    .querySelectorAll("button")
-    .forEach(button=>{
-
-        button.onclick=function(e){
-
-            e.stopPropagation();
-
-            let action =
-            this.dataset.action;
-
-
 
             // -------------------
             // Цвет
