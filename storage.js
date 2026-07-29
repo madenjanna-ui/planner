@@ -151,43 +151,35 @@ function loadTasks(date,container){
         // Выбор задачи
         // -------------------
 
-        task.onclick=function(e){
-console.log("Нажата задача", item.text);
-            if(e.target.tagName==="INPUT"){
-                return;
-            }
+      task.onclick=function(e){
 
-            document
-            .querySelectorAll(".task")
-            .forEach(t=>{
+    console.log("КЛИК ПО ЗАДАЧЕ");
 
-                t.classList.remove(
-                    "selected"
-                );
+    alert("Нажата задача: " + item.text);
 
-            });
 
-            task.classList.add(
-                "selected"
-            );
+    if(e.target.tagName==="INPUT"){
+        return;
+    }
 
-            selectedTask={
 
-                date:date,
+    selectedTask={
 
-                index:index
+        date:date,
 
-            };
+        index:index
 
-            showTaskMenu(
-                task,
-                item,
-                date,
-                index
-            );
+    };
 
-        };
 
+    showTaskMenu(
+        task,
+        item,
+        date,
+        index
+    );
+
+};
 
 
         // -------------------
