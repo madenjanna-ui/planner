@@ -784,32 +784,23 @@ window.addEventListener(
 ()=>{
 
 
-    if(window.scrollY>40){
-
+    if(window.scrollY > 40){
 
         header.classList.add(
             "compact"
         );
 
-
     }
     else{
-
 
         header.classList.remove(
             "compact"
         );
 
-
     }
 
 
 });
-
-
-
-
-
 
 
 // =====================================
