@@ -251,8 +251,8 @@ menu.innerHTML = `
         </button>
 
     `;
-
-
+document.body.appendChild(menu);
+console.log("HTML MENU:", menu.innerHTML);
 menu.innerHTML = `
 
     <button data-action="yellow">
@@ -302,37 +302,20 @@ if(top + 250 > window.innerHeight){
 }
 
 
-// Сначала добавляем в DOM
+// Добавляем меню в DOM
 document.body.appendChild(menu);
 
 
-// Теперь браузер знает размеры
-let menuRect = menu.getBoundingClientRect();
+// Ждём расчёт браузера
+setTimeout(()=>{
 
-
-// Корректируем позицию
-if(left + menuRect.width > window.innerWidth){
-    left = window.innerWidth - menuRect.width - 10;
-}
-
-if(top + menuRect.height > window.innerHeight){
-    top = rect.top - menuRect.height - 6;
-}
-
-
-// Ставим координаты
-menu.style.left = left + "px";
-menu.style.top = top + "px";
-
-
-requestAnimationFrame(()=>{
+    let menuRect = menu.getBoundingClientRect();
 
     console.log("7");
     console.log(menu);
-    console.log(menu.getBoundingClientRect());
+    console.log(menuRect);
 
-});
-
+}, 50);
 
 console.log("8");
 
