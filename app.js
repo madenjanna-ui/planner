@@ -238,7 +238,7 @@ activateDays();
 
 activateAddButtons();
 
-activateTaskSelection();
+
 
 }
 
