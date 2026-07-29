@@ -225,46 +225,6 @@ checkbox.onchange=function(){
 
 };
 
-// удержание задачи
-
-let pressTimer;
-
-
-function startPress(){
-
-    pressTimer = setTimeout(()=>{
-  console.log("удержание сработало");
-
-        showPriorityMenu(
-            task,
-            item,
-            date
-        );
-
-    },700);
-
-}
-
-
-
-function endPress(){
-
-    clearTimeout(pressTimer);
-
-}
-
-
-
-task.addEventListener(
-    "touchstart",
-    startPress
-);
-
-
-task.addEventListener(
-    "touchend",
-    endPress
-);
 
 
 
