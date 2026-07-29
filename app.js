@@ -502,7 +502,83 @@ document
 };
 
 
+// =====================================
+// Выбор задачи
+// =====================================
 
+function activateTaskSelection(){
+
+    document
+    .querySelectorAll(".task")
+    .forEach(task=>{
+
+
+        task.onclick=function(e){
+
+
+            if(
+                e.target.tagName==="INPUT"
+            ){
+
+                return;
+
+            }
+
+
+
+            document
+            .querySelectorAll(".task")
+            .forEach(t=>{
+
+                t.classList.remove(
+                    "selected"
+                );
+
+            });
+
+
+
+            task.classList.add(
+                "selected"
+            );
+
+
+
+            let day =
+            task.closest(".day");
+
+
+
+            selectedTask={
+
+                date:
+                day.dataset.date,
+
+
+                index:
+                Array
+                .from(
+                    day.querySelectorAll(".task")
+                )
+                .indexOf(task)
+
+            };
+
+
+            showTaskMenu(
+                task,
+                tasks[selectedTask.date][selectedTask.index],
+                selectedTask.date,
+                selectedTask.index
+            );
+
+
+        };
+
+
+    });
+
+}
 
 
 
@@ -608,8 +684,5 @@ window.addEventListener(
 // старт
 
 renderWeek();
-// =====================================
-// Запуск
-// =====================================
 
-renderWeek();
+activateTaskSelection();
