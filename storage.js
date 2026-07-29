@@ -251,18 +251,26 @@ alert("showTaskMenu вызвана");
 
 
 
-    let rect =
-    task.getBoundingClientRect();
+ let rect =
+task.getBoundingClientRect();
 
+menu.style.position = "fixed";
 
+let left = rect.left;
+let top = rect.bottom + 6;
 
-    menu.style.position="fixed";
+// чтобы меню не вылезало за правый край
+if(left + 220 > window.innerWidth){
+    left = window.innerWidth - 230;
+}
 
-    menu.style.left=
-    rect.left+"px";
+// если места снизу нет — показать сверху
+if(top + 250 > window.innerHeight){
+    top = rect.top - 220;
+}
 
-    menu.style.top=
-    rect.bottom+6+"px";
+menu.style.left = left + "px";
+menu.style.top = top + "px";
 
     menu.style.zIndex="99999";
 
