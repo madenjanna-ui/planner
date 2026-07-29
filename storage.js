@@ -162,7 +162,16 @@ task.classList.add(
 
 
 
-        task.onclick=function(e){
+       task.onclick=function(){
+
+    showTaskMenu(
+        task,
+        item,
+        date,
+        index
+    );
+
+};
 
 
             if(e.target.tagName==="INPUT"){
