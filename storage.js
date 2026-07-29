@@ -248,38 +248,7 @@ task.addEventListener(
     endPress
 );
         container.appendChild(task);
-// удержание задачи
 
-let pressTimer;
-
-
-task.addEventListener(
-    "touchstart",
-    function(){
-
-        pressTimer = setTimeout(()=>{
-
-            showPriorityMenu(
-                task,
-                item,
-                date
-            );
-
-        },700);
-
-    }
-);
-
-
-
-task.addEventListener(
-    "touchend",
-    function(){
-
-        clearTimeout(pressTimer);
-
-    }
-);
 
     });
 
