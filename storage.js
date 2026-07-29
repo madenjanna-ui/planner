@@ -164,12 +164,20 @@ task.classList.add(
 
 task.onclick=function(e){
 
-
     if(e.target.tagName==="INPUT"){
 
         return;
 
     }
+
+
+    selectedTask={
+
+        date:date,
+
+        index:index
+
+    };
 
 
     showTaskMenu(
@@ -181,7 +189,6 @@ task.onclick=function(e){
 
 
 };
-
 
 let checkbox =
 task.querySelector("input");
@@ -299,11 +306,15 @@ function showTaskMenu(task,item,date,index){
 
 
     let old =
-    document.querySelector(".task-menu");
+    document.querySelector(
+        ".task-menu"
+    );
 
 
     if(old){
+
         old.remove();
+
     }
 
 
@@ -312,10 +323,11 @@ function showTaskMenu(task,item,date,index){
     document.createElement("div");
 
 
-    menu.className="task-menu";
+    menu.className =
+    "task-menu";
 
 
-    menu.innerHTML=`
+    menu.innerHTML = `
 
     <button data-action="yellow">
     🟡 Важная
@@ -333,7 +345,7 @@ function showTaskMenu(task,item,date,index){
 
 
     <button data-action="edit">
-    ✏️ Редактировать
+    ✏️ Изменить
     </button>
 
 
@@ -341,20 +353,33 @@ function showTaskMenu(task,item,date,index){
     🗑 Удалить
     </button>
 
-
     `;
 
 
+    document.body.appendChild(menu);
 
-    task.appendChild(menu);
+
+
+    let rect =
+    task.getBoundingClientRect();
+
+
+    menu.style.left =
+    rect.left + "px";
+
+
+    menu.style.top =
+    rect.bottom + 5 + "px";
+
 
 
 
     menu.querySelectorAll("button")
-    .forEach(btn=>{
+    .forEach(button=>{
 
 
-        btn.onclick=function(e){
+        button.onclick=function(e){
+
 
             e.stopPropagation();
 
@@ -370,7 +395,8 @@ function showTaskMenu(task,item,date,index){
                 action==="gray"
             ){
 
-                item.priority=action;
+                item.priority =
+                action;
 
             }
 
@@ -385,7 +411,6 @@ function showTaskMenu(task,item,date,index){
                     1
                 );
 
-
             }
 
 
@@ -393,21 +418,56 @@ function showTaskMenu(task,item,date,index){
             if(action==="edit"){
 
 
-                let text =
+                let newText =
                 prompt(
                     "Изменить задачу:",
                     item.text
                 );
 
 
-                if(text){
+                if(newText){
 
-                    item.text=text;
+                    item.text =
+                    newText;
 
                 }
 
             }
 
+
+
+            saveTasks();
+
+            menu.remove();
+
+            renderWeek();
+
+
+        };
+
+
+    });
+
+
+}
+
+
+
+document.onclick=function(){
+
+    let menu =
+    document.querySelector(
+        ".task-menu"
+    );
+
+
+    if(menu){
+
+        menu.remove();
+
+    }
+
+};
 
 
             saveTasks();
