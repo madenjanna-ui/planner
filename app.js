@@ -8,12 +8,7 @@ console.log("MaDenFlow 2.1 запущен 🚀");
 
 // задачи
 
-let tasks =
-JSON.parse(
-    localStorage.getItem("MaDenFlow_tasks")
-)
-||
-{};
+
 
 
 // элементы
