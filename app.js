@@ -6,6 +6,14 @@
 console.log("MaDenFlow 2.1 запущен 🚀");
 
 
+let tasks =
+JSON.parse(
+    localStorage.getItem("MaDenFlow_tasks")
+)
+||
+{};
+
+
 // элементы
 
 const planner =
