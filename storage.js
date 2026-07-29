@@ -1,17 +1,17 @@
-// MaDenFlow - сохранение задач
-
+// =====================================
+// MaDenFlow Storage 3.0
+// =====================================
 
 let tasks =
 JSON.parse(
     localStorage.getItem("MaDenFlow_tasks")
-)
-||
-{};
+) || {};
 
 
 
-
-// сохранить
+// =====================================
+// Сохранение
+// =====================================
 
 function saveTasks(){
 
@@ -20,301 +20,214 @@ function saveTasks(){
         JSON.stringify(tasks)
     );
 
-
-    if(typeof cloudSave === "function"){
-
+    if(typeof cloudSave==="function"){
         cloudSave();
-
     }
 
 }
 
 
 
+// =====================================
+// Добавление задачи
+// =====================================
 
-
-// добавить задачу
-
-function addTask(date, text){
-
+function addTask(date,text){
 
     if(!tasks[date]){
-
-        tasks[date] = [];
-
+        tasks[date]=[];
     }
 
+    tasks[date].push({
 
+        text:text,
 
-tasks[date].push({
+        done:false,
 
-    text:text,
+        priority:"normal"
 
-    done:false,
-
-    priority:"normal"
-
-});
-
-
+    });
 
     saveTasks();
 
-
 }
 
 
 
+// =====================================
+// Загрузка задач
+// =====================================
 
+function loadTasks(date,container){
 
-// загрузить задачи дня
-
-function loadTasks(date, container){
-
-
-    container.innerHTML = "";
+    container.innerHTML="";
 
 
 
     if(!tasks[date]){
-
         return;
-
     }
-if(tasks[date].length <= 2){
+
+
+
+    // -------------------
+    // Колонки
+    // -------------------
 
     container.classList.remove(
         "two-columns",
         "three-columns"
     );
 
-}
 
 
-else if(tasks[date].length <= 6){
+    if(tasks[date].length>=3 &&
+       tasks[date].length<=6){
 
-    container.classList.add(
-        "two-columns"
-    );
+        container.classList.add(
+            "two-columns"
+        );
 
-    container.classList.remove(
-        "three-columns"
-    );
+    }
 
-}
+    if(tasks[date].length>=7){
 
+        container.classList.add(
+            "three-columns"
+        );
 
-else{
-
-
-    container.classList.add(
-        "three-columns"
-    );
-
-    container.classList.remove(
-        "two-columns"
-    );
+    }
 
 
-}
 
+    // -------------------
+    // Задачи
+    // -------------------
 
     tasks[date].forEach((item,index)=>{
 
+        if(!item.priority){
+            item.priority="normal";
+        }
 
-        let task =
+
+
+        let task=
         document.createElement("div");
 
 
 
-        task.className =
+        task.className=
         item.done
         ?
         "task completed"
         :
         "task";
-// приоритет задачи
-
-if(!item.priority){
-
-    item.priority = "normal";
-
-}
 
 
-task.classList.add(
-    item.priority
-);
+
+        task.classList.add(
+            item.priority
+        );
 
 
-        task.innerHTML = `
 
-        <input type="checkbox"
-        ${item.done ? "checked" : ""}>
+        task.innerHTML=`
 
+            <input
+                type="checkbox"
+                ${item.done ? "checked" : ""}
+            >
 
-        <span>
-        ${item.text}
-        </span>
+            <span>
+                ${item.text}
+            </span>
 
         `;
 
 
 
+        // -------------------
+        // Выбор задачи
+        // -------------------
 
-task.onclick=function(e){
+        task.onclick=function(e){
 
-    if(e.target.tagName==="INPUT"){
+            if(e.target.tagName==="INPUT"){
+                return;
+            }
 
-        return;
+            document
+            .querySelectorAll(".task")
+            .forEach(t=>{
 
-    }
+                t.classList.remove(
+                    "selected"
+                );
 
+            });
 
-    selectedTask={
+            task.classList.add(
+                "selected"
+            );
 
-        date:date,
+            selectedTask={
 
-        index:index
+                date:date,
 
-    };
+                index:index
 
+            };
 
-    showTaskMenu(
-        task,
-        item,
-        date,
-        index
-    );
+            showTaskMenu(
+                task,
+                item,
+                date,
+                index
+            );
 
-
-};
-
-let checkbox =
-task.querySelector("input");
-
-
-
-checkbox.onchange=function(){
-
-
-    item.done =
-    checkbox.checked;
-
-
-
-    saveTasks();
+        };
 
 
 
-    renderWeek();
+        // -------------------
+        // Выполнение
+        // -------------------
+
+        let checkbox=
+        task.querySelector("input");
 
 
-};
 
+        checkbox.onchange=function(){
 
+            item.done=
+            checkbox.checked;
+
+            saveTasks();
+
+            renderWeek();
+
+        };
 
 
 
         container.appendChild(task);
 
-
     });
 
-
 }
-function showPriorityMenu(task, item, date){
+// =====================================
+// Меню задачи
+// =====================================
 
-
-    let oldMenu =
-    document.querySelector(
-        ".priority-menu"
-    );
-
-
-    if(oldMenu){
-
-        oldMenu.remove();
-
-    }
-
-
-
-    let menu =
-    document.createElement("div");
-
-
-    menu.className =
-    "priority-menu";
-
-
-    menu.innerHTML = `
-
-    <button data-color="yellow">
-    🟡 Важная
-    </button>
-
-
-    <button data-color="red">
-    🔴 Срочная
-    </button>
-
-
-    <button data-color="gray">
-    ⚪ Обычная
-    </button>
-
-    `;
-
-
-
-    task.appendChild(menu);
-
-
-
-    menu.querySelectorAll("button")
-    .forEach(button=>{
-
-
-        button.onclick=function(e){
-
-
-            e.stopPropagation();
-
-
-            item.priority =
-            this.dataset.color;
-
-
-            saveTasks();
-
-
-            menu.remove();
-
-
-            renderWeek();
-
-
-        };
-
-
-    });
-
-
-}
 function showTaskMenu(task,item,date,index){
 
+    let oldMenu =
+    document.querySelector(".task-menu");
 
-    let old =
-    document.querySelector(
-        ".task-menu"
-    );
-
-
-    if(old){
-
-        old.remove();
-
+    if(oldMenu){
+        oldMenu.remove();
     }
 
 
@@ -322,38 +235,34 @@ function showTaskMenu(task,item,date,index){
     let menu =
     document.createElement("div");
 
-
-    menu.className =
-    "task-menu";
+    menu.className="task-menu";
 
 
-    menu.innerHTML = `
 
-    <button data-action="yellow">
-    🟡 Важная
-    </button>
+    menu.innerHTML=`
 
+        <button data-action="yellow">
+            🟡 Важная
+        </button>
 
-    <button data-action="red">
-    🔴 Срочная
-    </button>
+        <button data-action="red">
+            🔴 Срочная
+        </button>
 
+        <button data-action="gray">
+            ⚪ Обычная
+        </button>
 
-    <button data-action="gray">
-    ⚪ Обычная
-    </button>
+        <button data-action="edit">
+            ✏️ Изменить
+        </button>
 
-
-    <button data-action="edit">
-    ✏️ Изменить
-    </button>
-
-
-    <button data-action="delete">
-    🗑 Удалить
-    </button>
+        <button data-action="delete">
+            🗑 Удалить
+        </button>
 
     `;
+
 
 
     document.body.appendChild(menu);
@@ -364,30 +273,35 @@ function showTaskMenu(task,item,date,index){
     task.getBoundingClientRect();
 
 
-    menu.style.left =
-    rect.left + "px";
+
+    menu.style.position="fixed";
+
+    menu.style.left=
+    rect.left+"px";
+
+    menu.style.top=
+    rect.bottom+6+"px";
+
+    menu.style.zIndex="99999";
 
 
-    menu.style.top =
-    rect.bottom + 5 + "px";
 
-
-
-
-    menu.querySelectorAll("button")
+    menu
+    .querySelectorAll("button")
     .forEach(button=>{
-
 
         button.onclick=function(e){
 
-
             e.stopPropagation();
-
 
             let action =
             this.dataset.action;
 
 
+
+            // -------------------
+            // Цвет
+            // -------------------
 
             if(
                 action==="yellow" ||
@@ -395,40 +309,54 @@ function showTaskMenu(task,item,date,index){
                 action==="gray"
             ){
 
-                item.priority =
-                action;
+                item.priority=action;
 
             }
 
 
 
-            if(action==="delete"){
-
-
-                tasks[date]
-                .splice(
-                    index,
-                    1
-                );
-
-            }
-
-
+            // -------------------
+            // Редактирование
+            // -------------------
 
             if(action==="edit"){
 
-
-                let newText =
+                let txt=
                 prompt(
                     "Изменить задачу:",
                     item.text
                 );
 
+                if(
+                    txt!==null &&
+                    txt.trim()!==""
+                ){
 
-                if(newText){
+                    item.text=
+                    txt.trim();
 
-                    item.text =
-                    newText;
+                }
+
+            }
+
+
+
+            // -------------------
+            // Удаление
+            // -------------------
+
+            if(action==="delete"){
+
+                if(
+                    confirm(
+                        "Удалить задачу?"
+                    )
+                ){
+
+                    tasks[date].splice(
+                        index,
+                        1
+                    );
 
                 }
 
@@ -442,29 +370,39 @@ function showTaskMenu(task,item,date,index){
 
             renderWeek();
 
-
         };
 
-
     });
-
 
 }
 
 
 
-document.onclick=function(){
+// =====================================
+// Закрытие меню
+// =====================================
 
-    let menu =
-    document.querySelector(
-        ".task-menu"
-    );
+document.addEventListener(
 
+    "click",
 
-    if(menu){
+    function(e){
 
-        menu.remove();
+        let menu =
+        document.querySelector(".task-menu");
+
+        if(!menu){
+            return;
+        }
+
+        if(
+            !menu.contains(e.target)
+        ){
+
+            menu.remove();
+
+        }
 
     }
 
-};
+);
