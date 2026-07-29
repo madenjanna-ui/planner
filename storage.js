@@ -302,13 +302,27 @@ if(top + 250 > window.innerHeight){
 }
 
 
+// Сначала добавляем в DOM
+document.body.appendChild(menu);
+
+
+// Теперь браузер знает размеры
+let menuRect = menu.getBoundingClientRect();
+
+
+// Корректируем позицию
+if(left + menuRect.width > window.innerWidth){
+    left = window.innerWidth - menuRect.width - 10;
+}
+
+if(top + menuRect.height > window.innerHeight){
+    top = rect.top - menuRect.height - 6;
+}
+
+
 // Ставим координаты
 menu.style.left = left + "px";
 menu.style.top = top + "px";
-menu.offsetHeight;
-
-// Теперь добавляем в DOM
-document.body.appendChild(menu);
 
 
 requestAnimationFrame(()=>{
