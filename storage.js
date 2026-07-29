@@ -248,7 +248,8 @@ alert("showTaskMenu вызвана");
 
 
     document.body.appendChild(menu);
-
+console.log(menu);
+console.log(menu.getBoundingClientRect());
 
 
  let rect =
