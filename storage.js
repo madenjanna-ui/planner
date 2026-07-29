@@ -313,7 +313,7 @@ if(top + 250 > window.innerHeight){
 // Ставим координаты
 menu.style.left = left + "px";
 menu.style.top = top + "px";
-
+menu.offsetHeight;
 
 // Теперь добавляем в DOM
 document.body.appendChild(menu);
