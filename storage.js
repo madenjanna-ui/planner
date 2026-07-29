@@ -152,7 +152,7 @@ function loadTasks(date,container){
         // -------------------
 
         task.onclick=function(e){
-
+console.log("Нажата задача", item.text);
             if(e.target.tagName==="INPUT"){
                 return;
             }
