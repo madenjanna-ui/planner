@@ -204,22 +204,28 @@ function loadTasks(date,container){
 // =====================================
 
 function showTaskMenu(task,item,date,index){
-alert("showTaskMenu вызвана");
+
+    console.log("1");
+
     let oldMenu =
     document.querySelector(".task-menu");
+
+    console.log("2");
 
     if(oldMenu){
         oldMenu.remove();
     }
 
-
+    console.log("3");
 
     let menu =
     document.createElement("div");
 
+    console.log("4");
+
     menu.className="task-menu";
 
-
+    console.log("5");
 
     menu.innerHTML=`
 
@@ -245,16 +251,17 @@ alert("showTaskMenu вызвана");
 
     `;
 
-
+console.log("6");
 
     document.body.appendChild(menu);
+    console.log("7");
 console.log(menu);
 console.log(menu.getBoundingClientRect());
 
 
  let rect =
 task.getBoundingClientRect();
-
+console.log("8");
 menu.style.position = "fixed";
 
 let left = rect.left;
@@ -276,7 +283,7 @@ menu.style.top = top + "px";
     menu.style.zIndex="99999";
 
 
-
+console.log("9");
     menu
     .querySelectorAll("button")
     .forEach(button=>{
