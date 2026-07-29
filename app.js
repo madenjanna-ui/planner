@@ -555,16 +555,7 @@ if(toggleWeekBtn){
 
 
 
-        toggleWeekBtn.textContent =
-        weekCollapsed
-        ?
-        "▲"
-        :
-        "▼";
-
-
-    };
-
+    
 
 }
 // =====================================
