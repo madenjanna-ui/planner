@@ -1502,3 +1502,8 @@ body {
     background:#555;
 
 }
+.task-menu {
+    min-width:220px;
+    position:fixed;
+    z-index:99999;
+}
