@@ -5,12 +5,6 @@
 
 console.log("MaDenFlow 2.1 запущен 🚀");
 
-
-// задачи
-
-
-
-
 // элементы
 
 const planner =
