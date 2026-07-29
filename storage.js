@@ -224,6 +224,7 @@ checkbox.onchange=function(){
 
 
 };
+}
 // удержание задачи
 
 let pressTimer;
