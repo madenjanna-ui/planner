@@ -81,7 +81,42 @@ function loadTasks(date, container){
         return;
 
     }
+if(tasks[date].length <= 2){
 
+    container.classList.remove(
+        "two-columns",
+        "three-columns"
+    );
+
+}
+
+
+else if(tasks[date].length <= 6){
+
+    container.classList.add(
+        "two-columns"
+    );
+
+    container.classList.remove(
+        "three-columns"
+    );
+
+}
+
+
+else{
+
+
+    container.classList.add(
+        "three-columns"
+    );
+
+    container.classList.remove(
+        "two-columns"
+    );
+
+
+}
 
 
     tasks[date].forEach((item,index)=>{
