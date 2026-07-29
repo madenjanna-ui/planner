@@ -2,7 +2,7 @@
 // MaDenFlow Storage 3.0
 // =====================================
 
-let tasks =
+window.tasks =
 JSON.parse(
     localStorage.getItem("MaDenFlow_tasks")
 ) || {};
