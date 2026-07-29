@@ -241,15 +241,7 @@ activateAddButtons();
 activateTaskSelection();
 
 }
-selectedDate =
-this.dataset.date;
 
-
-console.log(
-    "Добавление в день:",
-    selectedDate
-);
-}
 // =====================================
 // Выбор дня
 // =====================================
