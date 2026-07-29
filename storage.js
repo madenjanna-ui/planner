@@ -251,8 +251,7 @@ menu.innerHTML = `
         </button>
 
     `;
-document.body.appendChild(menu);
-console.log("HTML MENU:", menu.innerHTML);
+
 menu.innerHTML = `
 
     <button data-action="yellow">
