@@ -235,11 +235,15 @@ function renderWeek(){
     }
 
 
-    updateDayStatus();
+ updateDayStatus();
 
-    activateDays();
+activateDays();
 
-    activateAddButtons();
+activateAddButtons();
+
+activateTaskSelection();
+
+}
 selectedDate =
 this.dataset.date;
 
@@ -348,11 +352,10 @@ function activateAddButtons(){
             .remove("hidden");
 
 
-            document
-            .getElementById("newTaskInput")
-            .focus();
-
-
+        document
+.getElementById("taskModal")
+.classList
+.remove("hidden");
 
         };
 
@@ -375,7 +378,15 @@ function activateAddButtons(){
 document
 .getElementById("saveTaskBtn")
 .onclick=function(){
+if(!selectedDate){
 
+    alert(
+        "Не выбран день"
+    );
+
+    return;
+
+}
 
 
     let input =
@@ -774,4 +785,4 @@ window.addEventListener(
 
 renderWeek();
 
-activateTaskSelection();
+
