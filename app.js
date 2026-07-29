@@ -512,24 +512,7 @@ document
 // Выбор задачи
 // =====================================
 
-function activateTaskSelection(){
 
-
-    document
-    .querySelectorAll(".task")
-    .forEach(task=>{
-
-
-        task.onclick=function(e){
-
-
-            if(
-                e.target.tagName==="INPUT"
-            ){
-
-                return;
-
-            }
 
 
 
