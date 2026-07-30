@@ -1,9 +1,8 @@
 // =====================================
-// MaDenFlow Storage 3.0
+// MaDenFlow Storage 3.1
 // =====================================
 
-window.tasks =
-JSON.parse(
+window.tasks = JSON.parse(
     localStorage.getItem("MaDenFlow_tasks")
 ) || {};
 
@@ -21,7 +20,9 @@ function saveTasks(){
     );
 
     if(typeof cloudSave==="function"){
+
         cloudSave();
+
     }
 
 }
@@ -29,13 +30,15 @@ function saveTasks(){
 
 
 // =====================================
-// Добавление задачи
+// Добавить задачу
 // =====================================
 
 function addTask(date,text){
 
     if(!tasks[date]){
+
         tasks[date]=[];
+
     }
 
     tasks[date].push({
@@ -55,34 +58,88 @@ function addTask(date,text){
 
 
 // =====================================
-// Загрузка задач
+// Удалить задачу
+// =====================================
+
+function deleteTask(date,index){
+
+    if(!tasks[date]) return;
+
+    tasks[date].splice(index,1);
+
+    saveTasks();
+
+}
+
+
+
+// =====================================
+// Изменить задачу
+// =====================================
+
+function editTask(date,index,newText){
+
+    if(!tasks[date]) return;
+
+    tasks[date][index].text=newText;
+
+    saveTasks();
+
+}
+
+
+
+// =====================================
+// Изменить приоритет
+// =====================================
+
+function changePriority(date,index,color){
+
+    if(!tasks[date]) return;
+
+    tasks[date][index].priority=color;
+
+    saveTasks();
+
+}
+
+
+
+// =====================================
+// Выполнение задачи
+// =====================================
+
+function toggleTask(date,index,state){
+
+    if(!tasks[date]) return;
+
+    tasks[date][index].done=state;
+
+    saveTasks();
+
+}
+// =====================================
+// Загрузка задач дня
 // =====================================
 
 function loadTasks(date,container){
 
     container.innerHTML="";
 
-
-
     if(!tasks[date]){
         return;
     }
 
-
-
-    // -------------------
-    // Колонки
-    // -------------------
+    // ---------- Колонки ----------
 
     container.classList.remove(
         "two-columns",
         "three-columns"
     );
 
+    const count = tasks[date].length;
 
-
-    if(tasks[date].length>=3 &&
-       tasks[date].length<=6){
+    if(count>=3 && count<=6){
 
         container.classList.add(
             "two-columns"
@@ -90,7 +147,7 @@ function loadTasks(date,container){
 
     }
 
-    if(tasks[date].length>=7){
+    if(count>=7){
 
         container.classList.add(
             "three-columns"
@@ -98,39 +155,23 @@ function loadTasks(date,container){
 
     }
 
-
-
-    // -------------------
-    // Задачи
-    // -------------------
+    // ---------- Список задач ----------
 
     tasks[date].forEach((item,index)=>{
 
-        if(!item.priority){
-            item.priority="normal";
-        }
-
-
-
-        let task=
+        const task =
         document.createElement("div");
 
-
-
-        task.className=
-        item.done
-        ?
-        "task completed"
-        :
-        "task";
-
-
+        task.className =
+            item.done
+            ?
+            "task completed"
+            :
+            "task";
 
         task.classList.add(
-            item.priority
+            item.priority || "normal"
         );
-
-
 
         task.innerHTML=`
 
@@ -139,55 +180,43 @@ function loadTasks(date,container){
                 ${item.done ? "checked" : ""}
             >
 
-            <span>
-                ${item.text}
-            </span>
+            <span>${item.text}</span>
 
         `;
 
+        // Чекбокс
 
-
-        // -------------------
-        // Выбор задачи
-        // -------------------
-
- task.onclick=function(e){
-
-    console.log("КЛИК");
-
-    if(e.target.tagName==="INPUT"){
-        return;
-    }
-console.log(typeof showTaskMenu);
-
-    showTaskMenu(task,item,date,index);
-
-};
-
-
-
-
-        // -------------------
-        // Выполнение
-        // -------------------
-
-        let checkbox=
+        const checkbox =
         task.querySelector("input");
-
-
 
         checkbox.onchange=function(){
 
-            item.done=
-            checkbox.checked;
-
-            saveTasks();
+            toggleTask(
+                date,
+                index,
+                checkbox.checked
+            );
 
             renderWeek();
 
         };
 
+        // Клик по задаче
 
+        task.onclick=function(e){
+
+            if(e.target.tagName==="INPUT"){
+                return;
+            }
+
+            showTaskMenu(
+                task,
+                item,
+                date,
+                index
+            );
+
+        };
 
         container.appendChild(task);
 
@@ -200,26 +229,22 @@ console.log(typeof showTaskMenu);
 
 function showTaskMenu(task,item,date,index){
 
-    
-
-    let oldMenu =
+    // удалить старое меню
+    const oldMenu =
     document.querySelector(".task-menu");
-    
 
     if(oldMenu){
         oldMenu.remove();
     }
 
-    
-
-    let menu = document.createElement("div");
-
-    
+    // создать меню
+    const menu =
+    document.createElement("div");
 
     menu.className="task-menu";
 
-   
-menu.innerHTML = `
+    menu.innerHTML=`
+
         <button data-action="yellow">
             🟡 Важная
         </button>
@@ -228,7 +253,7 @@ menu.innerHTML = `
             🔴 Срочная
         </button>
 
-        <button data-action="gray">
+        <button data-action="normal">
             ⚪ Обычная
         </button>
 
@@ -242,128 +267,122 @@ menu.innerHTML = `
 
     `;
 
-menu.innerHTML = `
+    document.body.appendChild(menu);
 
-<button data-action="yellow">
-🟡 Важная
-</button>
+    // положение меню
+    const rect =
+    task.getBoundingClientRect();
 
-<button data-action="red">
-🔴 Срочная
-</button>
+    let left = rect.left;
+    let top = rect.bottom + 6;
 
-<button data-action="gray">
-⚪ Обычная
-</button>
+    if(left + 220 > window.innerWidth){
+        left = window.innerWidth - 225;
+    }
 
-<button data-action="edit">
-✏️ Изменить
-</button>
+    if(top + 240 > window.innerHeight){
+        top = rect.top - 245;
+    }
 
-<button data-action="delete">
-🗑 Удалить
-</button>
+    menu.style.position="fixed";
+    menu.style.left=left+"px";
+    menu.style.top=top+"px";
+    menu.style.zIndex="99999";
 
-`;
+    // обработка кнопок
+    menu.querySelectorAll("button")
+    .forEach(button=>{
 
-menu.style.position = "fixed";
-menu.style.zIndex = "99999";
+        button.onclick=function(e){
 
-let rect = task.getBoundingClientRect();
+            e.stopPropagation();
 
-let left = rect.left;
-let top = rect.bottom + 6;
+            const action =
+            this.dataset.action;
 
-if(left + 220 > window.innerWidth){
-    left = window.innerWidth - 230;
-}
+            if(
+                action==="yellow" ||
+                action==="red" ||
+                action==="normal"
+            ){
 
-if(top + 250 > window.innerHeight){
-    top = rect.top - 256;
-}
+                changePriority(
+                    date,
+                    index,
+                    action
+                );
 
-menu.style.left = left + "px";
-menu.style.top = top + "px";
-
-document.body.appendChild(menu);
-
-
-menu.querySelectorAll("button").forEach(button=>{
-
-    button.onclick=function(e){
-
-        e.stopPropagation();
-
-        let action=this.dataset.action;
-
-        if(action==="yellow" ||
-           action==="red" ||
-           action==="gray"){
-
-            item.priority=action;
-
-        }
-        else if(action==="edit"){
-
-            let txt=prompt(
-                "Изменить задачу:",
-                item.text
-            );
-
-            if(txt!==null && txt.trim()!==""){
-                item.text=txt.trim();
             }
 
-        }
-        else if(action==="delete"){
+            else if(action==="edit"){
 
-            if(confirm("Удалить задачу?")){
-                tasks[date].splice(index,1);
+                const txt =
+                prompt(
+                    "Изменить задачу",
+                    item.text
+                );
+
+                if(
+                    txt!==null &&
+                    txt.trim()!==""
+                ){
+
+                    editTask(
+                        date,
+                        index,
+                        txt.trim()
+                    );
+
+                }
+
             }
 
-        }
+            else if(action==="delete"){
 
-        saveTasks();
-        renderWeek();
-saveTasks();
+                if(confirm("Удалить задачу?")){
 
-menu.remove();
+                    deleteTask(
+                        date,
+                        index
+                    );
 
-renderWeek();
-    };
+                }
 
-});
-
-}
-
-
-      
-
-// =====================================
-// Закрытие меню
-// =====================================
-
-document.addEventListener(
-
-    "click",
-
-    function(e){
-
-        let menu =
-        document.querySelector(".task-menu");
-
-        if(!menu){
-            return;
-        }
-
-        if(
-            !menu.contains(e.target)
-        ){
+            }
 
             menu.remove();
 
-        }
+            renderWeek();
 
+        };
+
+    });
+
+}
+// =====================================
+// Закрытие меню при клике вне него
+// =====================================
+
+document.addEventListener("click",function(e){
+
+    const menu =
+    document.querySelector(".task-menu");
+
+    if(!menu){
+        return;
     }
 
-);
+    // клик по меню
+    if(menu.contains(e.target)){
+        return;
+    }
+
+    // клик по задаче
+    if(e.target.closest(".task")){
+        return;
+    }
+
+    menu.remove();
+
+});
+
