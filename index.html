@@ -119,7 +119,95 @@
 <script src="cloud.js"></script>
 
 <script src="app.js"></script>
+<!-- ==========================
+     СЛУЖЕНИЕ
+========================== -->
 
+<div id="serviceModal" class="modal hidden">
+
+    <div class="modal-content service-window">
+
+        <div class="service-header">
+            🕒 Служение
+        </div>
+
+        <div class="service-month">
+            <span id="serviceMonth">Июль 2026</span>
+        </div>
+
+        <div id="serviceList" class="service-list">
+            <!-- записи -->
+        </div>
+
+        <button id="addServiceBtn" class="service-add">
+            ➕ Добавить запись
+        </button>
+
+        <div class="service-total">
+            <div>ИТОГО</div>
+            <div id="serviceTotal">
+                0 ч 00 мин
+            </div>
+        </div>
+
+        <button id="closeServiceBtn" class="service-close">
+            Закрыть
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================
+     ДОБАВИТЬ ЗАПИСЬ
+========================== -->
+
+<div id="serviceAddModal" class="modal hidden">
+
+    <div class="modal-content service-add-window">
+
+        <h3>Новая запись</h3>
+
+        <label>Дата</label>
+
+        <input
+            type="date"
+            id="serviceDate"
+        >
+
+        <label>Часы</label>
+
+        <input
+            type="number"
+            id="serviceHours"
+            min="0"
+            max="24"
+            value="0"
+        >
+
+        <label>Минуты</label>
+
+        <input
+            type="number"
+            id="serviceMinutes"
+            min="0"
+            max="59"
+            value="0"
+        >
+
+        <button id="saveServiceBtn">
+            Сохранить
+        </button>
+
+        <button id="cancelServiceBtn">
+            Отмена
+        </button>
+
+    </div>
+
+</div>
+    
 </body>
 
 </html>
