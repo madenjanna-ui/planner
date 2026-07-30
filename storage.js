@@ -158,15 +158,13 @@ function loadTasks(date,container){
     if(e.target.tagName==="INPUT"){
         return;
     }
-
-    console.log(typeof showTaskMenu);
+console.log(typeof showTaskMenu);
 
     showTaskMenu(task,item,date,index);
 
 };
 
-    console.log("после showTaskMenu");
-};
+
 
 
         // -------------------
