@@ -205,26 +205,21 @@ function loadTasks(date,container){
 
 function showTaskMenu(task,item,date,index){
 
-    alert("showTaskMenu вызвана");
-
-    console.log(task);
-    console.log(item);
-    console.log(date);
-    console.log(index);
+    
 
     let oldMenu =
     document.querySelector(".task-menu");
-    console.log("2");
+    
 
     if(oldMenu){
         oldMenu.remove();
     }
 
-    console.log("3");
+    
 
     let menu = document.createElement("div");
 
-    console.log("4");
+    
 
     menu.className="task-menu";
 
