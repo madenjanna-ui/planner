@@ -298,64 +298,55 @@ menu.style.top = top + "px";
 document.body.appendChild(menu);
 
 
-menu
-.querySelectorAll("button")
-.forEach(button=>{
+menu.querySelectorAll("button").forEach(button=>{
 
     button.onclick=function(e){
 
         e.stopPropagation();
 
-        let action = this.dataset.action;
+        let action=this.dataset.action;
 
+        if(action==="yellow" ||
+           action==="red" ||
+           action==="gray"){
 
-        if(
-            action==="yellow" ||
-            action==="red" ||
-            action==="gray"
-        ){
-            item.priority = action;
+            item.priority=action;
+
         }
+        else if(action==="edit"){
 
-
-        if(action==="edit"){
-
-            let txt = prompt(
+            let txt=prompt(
                 "Изменить задачу:",
                 item.text
             );
 
-            if(txt !== null && txt.trim() !== ""){
-                item.text = txt.trim();
+            if(txt!==null && txt.trim()!==""){
+                item.text=txt.trim();
             }
 
         }
-
-
-        if(action==="delete"){
+        else if(action==="delete"){
 
             if(confirm("Удалить задачу?")){
-
                 tasks[date].splice(index,1);
-
             }
 
         }
 
-
         saveTasks();
-
-        menu.remove();
-
         renderWeek();
+saveTasks();
 
+menu.remove();
+
+renderWeek();
     };
 
 });
 
-
-console.log("9");
 }
+
+
       
 
 // =====================================
