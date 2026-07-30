@@ -254,69 +254,48 @@ menu.innerHTML = `
 
 menu.innerHTML = `
 
-    <button data-action="yellow">
-        🟡 Важная
-    </button>
+<button data-action="yellow">
+🟡 Важная
+</button>
 
-    <button data-action="red">
-        🔴 Срочная
-    </button>
+<button data-action="red">
+🔴 Срочная
+</button>
 
-    <button data-action="gray">
-        ⚪ Обычная
-    </button>
+<button data-action="gray">
+⚪ Обычная
+</button>
 
-    <button data-action="edit">
-        ✏️ Изменить
-    </button>
+<button data-action="edit">
+✏️ Изменить
+</button>
 
-    <button data-action="delete">
-        🗑 Удалить
-    </button>
+<button data-action="delete">
+🗑 Удалить
+</button>
 
 `;
 
-
-// Сначала задаём стили
 menu.style.position = "fixed";
 menu.style.zIndex = "99999";
 
-
-// Получаем координаты задачи
 let rect = task.getBoundingClientRect();
 
 let left = rect.left;
 let top = rect.bottom + 6;
 
-
-// Проверяем правый край
 if(left + 220 > window.innerWidth){
     left = window.innerWidth - 230;
 }
 
-
-// Проверяем нижний край
 if(top + 250 > window.innerHeight){
     top = rect.top - 256;
 }
 
+menu.style.left = left + "px";
+menu.style.top = top + "px";
 
-// Добавляем меню в DOM
 document.body.appendChild(menu);
-
-
-// Ждём расчёт браузера
-setTimeout(()=>{
-
-    let menuRect = menu.getBoundingClientRect();
-
-    console.log("7");
-    console.log(menu);
-    console.log(menuRect);
-
-}, 50);
-
-console.log("8");
 
 
 menu
