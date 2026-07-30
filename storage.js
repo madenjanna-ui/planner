@@ -268,7 +268,12 @@ function showTaskMenu(task,item,date,index){
     `;
 
     document.body.appendChild(menu);
-
+console.log(menu);
+menu.style.background = "red";
+menu.style.color = "white";
+menu.style.padding = "20px";
+menu.style.border = "3px solid yellow";
+menu.innerHTML = "МЕНЮ";
     // положение меню
     const rect =
     task.getBoundingClientRect();
