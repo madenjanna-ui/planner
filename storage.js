@@ -151,22 +151,19 @@ function loadTasks(date,container){
         // Выбор задачи
         // -------------------
 
- task.onclick = function(e){
+ task.onclick=function(e){
 
-    console.log("КЛИК ПО ЗАДАЧЕ");
+    console.log("КЛИК");
 
     if(e.target.tagName==="INPUT"){
         return;
     }
 
-    console.log("перед showTaskMenu");
+    console.log(typeof showTaskMenu);
 
-    showTaskMenu(
-        task,
-        item,
-        date,
-        index
-    );
+    showTaskMenu(task,item,date,index);
+
+};
 
     console.log("после showTaskMenu");
 };
