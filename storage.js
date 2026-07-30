@@ -391,3 +391,153 @@ document.addEventListener("click",function(e){
 
 });
 
+/* ===================================
+   СЛУЖЕНИЕ
+=================================== */
+
+.service-window{
+    width:340px;
+    max-width:92%;
+    border-radius:22px;
+    padding:22px;
+    background:#ffffff;
+    box-shadow:0 15px 45px rgba(0,0,0,.25);
+}
+
+.service-add-window{
+    width:300px;
+    max-width:90%;
+    border-radius:22px;
+    padding:22px;
+    background:#ffffff;
+    box-shadow:0 15px 45px rgba(0,0,0,.25);
+}
+
+.service-header{
+    font-size:24px;
+    font-weight:700;
+    text-align:center;
+    margin-bottom:18px;
+}
+
+.service-month{
+    text-align:center;
+    font-size:18px;
+    font-weight:600;
+    color:#666;
+    margin-bottom:15px;
+}
+
+.service-list{
+    max-height:260px;
+    overflow-y:auto;
+    margin-bottom:15px;
+}
+
+.service-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 6px;
+    border-bottom:1px solid #ececec;
+    font-size:17px;
+}
+
+.service-row:last-child{
+    border-bottom:none;
+}
+
+.service-date{
+    font-weight:600;
+}
+
+.service-time{
+    color:#2f80ed;
+    font-weight:700;
+}
+
+.service-total{
+    margin-top:18px;
+    padding-top:15px;
+    border-top:2px solid #ddd;
+    text-align:center;
+}
+
+.service-total div:first-child{
+    font-size:15px;
+    color:#888;
+}
+
+#serviceTotal{
+    margin-top:6px;
+    font-size:26px;
+    font-weight:bold;
+    color:#2f80ed;
+}
+
+.service-add,
+.service-close,
+#saveServiceBtn,
+#cancelServiceBtn{
+
+    width:100%;
+    border:none;
+    border-radius:14px;
+    padding:13px;
+    margin-top:12px;
+
+    cursor:pointer;
+
+    font-size:16px;
+    font-weight:600;
+
+    transition:.2s;
+}
+
+.service-add{
+    background:#2f80ed;
+    color:white;
+}
+
+.service-add:hover{
+    transform:scale(1.02);
+}
+
+.service-close{
+    background:#efefef;
+}
+
+#saveServiceBtn{
+    background:#2f80ed;
+    color:white;
+}
+
+#cancelServiceBtn{
+    background:#efefef;
+}
+
+.service-add-window label{
+    display:block;
+    margin-top:15px;
+    margin-bottom:6px;
+    font-weight:600;
+}
+
+.service-add-window input{
+
+    width:100%;
+
+    box-sizing:border-box;
+
+    padding:10px;
+
+    border-radius:10px;
+
+    border:1px solid #ccc;
+
+    font-size:16px;
+}
+
+.modal.hidden{
+    display:none;
+}
